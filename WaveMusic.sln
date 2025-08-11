@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaveMusic", "WaveMusic\WaveMusic.csproj", "{B23F06EF-5546-47F3-AEA8-67B81388FE1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B23F06EF-5546-47F3-AEA8-67B81388FE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B23F06EF-5546-47F3-AEA8-67B81388FE1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B23F06EF-5546-47F3-AEA8-67B81388FE1E}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{B23F06EF-5546-47F3-AEA8-67B81388FE1E}.Debug|Any CPU.Build.0 = Debug|x64
+	EndGlobalSection
+EndGlobal
