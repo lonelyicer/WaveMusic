@@ -8,37 +8,34 @@ namespace WaveMusic
 {
     public class EventHandler: CustomEventsHandler
     {
-        public override void OnServerRoundStarted()
-        {
-            AudioPlayer.CreateOrGet("mtf-music",
-                condition: hub => hub.roleManager.CurrentRole.RoleTypeId is RoleTypeId.NtfCaptain
-                    or RoleTypeId.NtfPrivate or RoleTypeId.NtfSergeant or RoleTypeId.NtfSpecialist,
-                onIntialCreation: p =>
-                {
-                    p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
-                });
-            
-            AudioPlayer.CreateOrGet("ci-music",
-                condition: hub => hub.roleManager.CurrentRole.RoleTypeId is RoleTypeId.ChaosConscript
-                    or RoleTypeId.ChaosRepressor or RoleTypeId.ChaosMarauder or RoleTypeId.ChaosRifleman,
-                onIntialCreation: p =>
-                {
-                    p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
-                });
-        }
-
         public override void OnServerWaveRespawned(WaveRespawnedEventArgs ev)
         {
-            if (ev.Wave.Base is NtfSpawnWave or NtfMiniWave)
+            switch (ev.Wave.Base)
             {
-                AudioPlayer.TryGet("mtf-music", out var musicPlayer);
-                musicPlayer.AddClip("mtf-music");
-            }
-            
-            if (ev.Wave.Base is ChaosSpawnWave or ChaosMiniWave)
-            {
-                AudioPlayer.TryGet("ci-music", out var musicPlayer);
-                musicPlayer.AddClip("ci-music");
+                case NtfSpawnWave or NtfMiniWave:
+                {
+                    var musicPlayer = AudioPlayer.CreateOrGet("mtf-music",
+                        condition: hub => hub.roleManager.CurrentRole.RoleTypeId is RoleTypeId.NtfCaptain
+                            or RoleTypeId.NtfPrivate or RoleTypeId.NtfSergeant or RoleTypeId.NtfSpecialist,
+                        onIntialCreation: p =>
+                        {
+                            p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
+                        });
+                    musicPlayer.AddClip("mtf-music");
+                    break;
+                }
+                case ChaosSpawnWave or ChaosMiniWave:
+                {
+                    var musicPlayer = AudioPlayer.CreateOrGet("ci-music",
+                        condition: hub => hub.roleManager.CurrentRole.RoleTypeId is RoleTypeId.NtfCaptain
+                            or RoleTypeId.NtfPrivate or RoleTypeId.NtfSergeant or RoleTypeId.NtfSpecialist,
+                        onIntialCreation: p =>
+                        {
+                            p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
+                        });
+                    musicPlayer.AddClip("ci-music");
+                    break;
+                }
             }
         }
     }
