@@ -24,6 +24,6 @@ diable_mtf_announcement: false
 ```
 
 ## Creadit
-[LabApi](https://github.com/northwood-studios/LabAPI) by NorthWood Studios  
+[LabApi](https://github.com/northwood-studios/LabAPI) by Northwood Studios  
 [AudioPlayerApi](https://github.com/Killers0992/AudioPlayerApi/) by Killers0992  
 [Harmony](https://github.com/pardeike/Harmony) by pardeike  
