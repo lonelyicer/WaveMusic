@@ -15,8 +15,11 @@ namespace WaveMusic
                 case NtfSpawnWave or NtfMiniWave:
                 {
                     var musicPlayer = AudioPlayer.CreateOrGet("mtf-music",
-                        condition: hub => hub.roleManager.CurrentRole.RoleTypeId is RoleTypeId.NtfCaptain
-                            or RoleTypeId.NtfPrivate or RoleTypeId.NtfSergeant or RoleTypeId.NtfSpecialist,
+                        condition: hub =>
+                        {
+                            var currentRoleName = hub.roleManager.CurrentRole.RoleTypeId.ToString();
+                            return WaveMusic.Instance.PluginConfig.WhoCanHearMtfMusic.Contains(currentRoleName);
+                        },
                         onIntialCreation: p =>
                         {
                             p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
@@ -27,8 +30,11 @@ namespace WaveMusic
                 case ChaosSpawnWave or ChaosMiniWave:
                 {
                     var musicPlayer = AudioPlayer.CreateOrGet("ci-music",
-                        condition: hub => hub.roleManager.CurrentRole.RoleTypeId is RoleTypeId.NtfCaptain
-                            or RoleTypeId.NtfPrivate or RoleTypeId.NtfSergeant or RoleTypeId.NtfSpecialist,
+                        condition: hub =>
+                        {
+                            var currentRoleName = hub.roleManager.CurrentRole.RoleTypeId.ToString();
+                            return WaveMusic.Instance.PluginConfig.WhoCanHearCiMusic.Contains(currentRoleName);
+                        },
                         onIntialCreation: p =>
                         {
                             p.AddSpeaker("Main", isSpatial: false, maxDistance: 5000f);
